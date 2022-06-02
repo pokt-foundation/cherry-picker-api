@@ -45,12 +45,12 @@ func NewPostgresDriverFromSQLDBInstance(db *sql.DB) *PostgresDriver {
 	}
 }
 
-func (pg *PostgresDriver) GetNodeSessionFromHeight(publicKey string, sessionHeight int) (*Session, error) {
+func (pg *PostgresDriver) GetSessionHeight(publicKey string, sessionHeight int) (*Session, error) {
 	var session Session
 	return &session, pg.Get(&session, getNodeSessionFromHeight, publicKey, sessionHeight)
 }
 
-func (pg *PostgresDriver) GetNodeSessionFromKey(publicKey, sessionKey string) (*Session, error) {
+func (pg *PostgresDriver) GetSessionFromKey(publicKey, sessionKey string) (*Session, error) {
 	var session Session
 	return &session, pg.Get(&session, getNodeSessionFromHeight, publicKey, sessionKey)
 }

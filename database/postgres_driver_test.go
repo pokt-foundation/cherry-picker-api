@@ -19,11 +19,11 @@ func TestPostgresDriver_GetNodeSessionFromHeight(t *testing.T) {
 		AddRow("1234", "0001", "1234", "", 1, 2, 2, 2, false)
 	mock.ExpectQuery("SELECT (.+) FROM cherry_picker_session").WillReturnRows(rows)
 
-	session, err := driver.GetNodeSessionFromHeight("1234", 1)
+	session, err := driver.GetSessionHeight("1234", 1)
 	c.NoError(err)
 	c.NotEmpty(session)
 
-	_, err = driver.GetNodeSessionFromHeight("123410", 1)
+	_, err = driver.GetSessionHeight("123410", 1)
 	c.Error(err)
 }
 
@@ -39,10 +39,10 @@ func TestPostgresDriver_GetNodeSessionFromKey(t *testing.T) {
 		AddRow("1234", "0001", "1234", "", 1, 2, 2, 2, false)
 	mock.ExpectQuery("SELECT (.+) FROM cherry_picker_session").WillReturnRows(rows)
 
-	session, err := driver.GetNodeSessionFromKey("1234", "1234")
+	session, err := driver.GetSessionFromKey("1234", "1234")
 	c.NoError(err)
 	c.NotEmpty(session)
 
-	_, err = driver.GetNodeSessionFromKey("123410", "1234")
+	_, err = driver.GetSessionFromKey("123410", "1234")
 	c.Error(err)
 }
