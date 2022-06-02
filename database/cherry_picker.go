@@ -1,4 +1,4 @@
-package postgresdriver
+package database
 
 // Session model of the aggregated data of cherry picker of all regions
 type Session struct {
@@ -31,4 +31,10 @@ type Region struct {
 	AvgSuccessLatency         float32   `db:"avg_success_latency"`
 	AvgWeightedSuccessLatency float32   `db:"avg_weighted_success_latency"`
 	Failure                   bool      `db:"failure"`
+}
+
+// CherryPickerStorage represents the operations where the cherry picker data is stored
+type CherryPickerStorage interface {
+	GetNodeSessionHeight(publicKey string, sessionHeight int) (*Session, error)
+	GetNodeSessionFromKey(publicKey, sessionKey string) (*Session, error)
 }

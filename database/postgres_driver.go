@@ -1,4 +1,4 @@
-package postgresdriver
+package database
 
 import (
 	"database/sql"
